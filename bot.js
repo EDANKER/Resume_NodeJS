@@ -15,6 +15,7 @@ bot.command('start', (ctx) => {
                         text: "Отправьте свой номер",
                         request_contact: true
 
+
                     },
                 ],
 
@@ -22,10 +23,51 @@ bot.command('start', (ctx) => {
             resize_keyboard: true,
 
 
+
+        },
+    });
+
+    bot.telegram.sendMessage(ctx.chat.id, 'Офформление',  {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {
+                        text: "Форма для соискателя",callback_data: "a1",
+                    },
+
+
+                ],
+                [
+                    {
+                        text: "Форма мои навыки",callback_data: "a2",
+                    },
+
+                ],
+
+                [
+                    {
+                        text: "Форма социальные сети",callback_data: "a3",
+                    },
+
+
+                ],
+                [
+                    {
+                        text: "Форма для работодателя",callback_data: "a4",
+                    }
+                ]
+
+
+
+            ]
         }
+
+
     })
 
 });
+
+
 
 bot.launch().then(() => console.log('Started'));
 
