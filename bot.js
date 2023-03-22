@@ -7,39 +7,106 @@ bot.command('start', (ctx) => {
         parse_mode: "Markdown",
 
         reply_markup: {
-            one_time_keyboard: true,
 
-            keyboard: [
+
+            inline_keyboard: [
                 [
                     {
                         text: "Отправьте свой номер",
-                        request_contact: true
+                        callback_data: "number"
+                    },
+
+
+                ],
+
+                [
+                    {
+                        text: "Поделиться локацей",
+                        callback_data: "number"
 
 
                     },
-                ],
+                ]
 
             ],
+            remove_keyboard: true,
             resize_keyboard: true,
+
 
 
 
         },
     });
 
-    bot.telegram.sendMessage(ctx.chat.id, 'Офформление',  {
+
+
+
+
+});
+
+bot.action('number', ctx => {
+    ctx.telegram.sendMessage(ctx.chat.id, "Подтвердите телефон и вашу локацию", {
+
         reply_markup: {
-            inline_keyboard: [
+
+            keyboard:[
                 [
                     {
-                        text: "Форма для соискателя",callback_data: "a1",
+                        text: "Подтвердите ваш номер",
+                        request_contact: true,
+
+                    },
+
+                    {
+                        text: "Подтвердите вашу локацию",
+                        request_location: true
+
+                    }
+                ],
+
+                [
+                    {
+                        text: "Продолжить",
+
+
+
+                    }
+                ]
+
+
+
+
+
+            ],
+
+
+            resize_keyboard: true
+
+        }
+
+
+    })
+
+
+})
+
+bot.hears("Продолжить", ctx => {
+    bot.telegram.sendMessage(ctx.chat.id, 'Офформление',  {
+        reply_markup: {
+
+            inline_keyboard: [
+
+                [
+                    {
+                        text: "Форма для соискателя",callback_data: "prifil1",
                     },
 
 
                 ],
+
                 [
                     {
-                        text: "Форма мои навыки",callback_data: "a2",
+                        text: "Форма мои навыки",callback_data: "proffil2",
                     },
 
                 ],
@@ -51,6 +118,7 @@ bot.command('start', (ctx) => {
 
 
                 ],
+
                 [
                     {
                         text: "Форма для работодателя",callback_data: "a4",
@@ -65,7 +133,148 @@ bot.command('start', (ctx) => {
 
     })
 
-});
+
+})
+
+
+
+bot.action('proffil2', ctx => {
+    ctx.telegram.sendMessage(ctx.chat.id, "Форма мои навыки", {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {
+                        text: "Каким иностранным \n" +
+                            "языком вы владеете?", callback_data: "1",
+                    },
+                ],
+
+                [
+                    {
+                        text: "Какой у вас уровень \n" +
+                            "владения?", callback_data: "1",
+                    },
+                ],
+
+                [
+                    {
+                        text: "Какими \n" +
+                            "профессиональными \n" +
+                            "навыками вы владеете?", callback_data: "1",
+                    },
+                ],
+
+                [
+                    {
+                        text: "Какой у вас уровень \n" +
+                            "владения?", callback_data: "1",
+                    },
+                ],
+
+
+            ]
+
+        }
+
+
+    })
+
+
+})
+
+
+bot.action('prifil1', ctx => {
+    ctx.telegram.sendMessage(ctx.chat.id,"Форма для соискателя" , {
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    {
+                        text: "Ваш статус",callback_data: "a4",
+                    },
+                ],
+
+                [
+                    {
+                        text: "Как вас зовут?", callback_data: "a4"
+                    },
+
+                ],
+
+                [
+                    {
+                        text: "Дата рождения?", callback_data: "a4"
+
+                    },
+
+                ],
+
+                [
+                    {
+                        text: "Рассматриваешь ли \n" +
+                            "переезд?", callback_data: "a4"
+
+                    },
+
+                ],
+
+                [
+                    {
+                        text: "Прикрепить резюме ", callback_data: "a4"
+
+                    },
+
+
+
+                ],
+
+                [
+                    {
+                        text: "Что вам важно в выборе \n" +
+                            "компании?", callback_data: "a4"
+                    },
+
+                ],
+
+                [
+                    {
+                        text: "Желаемая заработная \n" +
+                            "плата?", callback_data: "a4"
+
+                    },
+
+                ],
+
+                [
+                    {
+                        text: " Оставьте свой контакт \n" +
+                            "для обратной связи! ", callback_data: "a4"
+                    }
+
+                ]
+
+
+
+            ]
+
+
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+})
+
+
+
 
 
 
