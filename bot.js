@@ -1,9 +1,26 @@
-const {Telegraf, Markup} = require('telegraf');
-
+const {Telegraf, Markup, session} = require('telegraf');
 const bot = new Telegraf('5705894113:AAELvN0amQ82m2tBYwxHZUxjzvT2ODn2sAM');
 
-bot.command('start', (ctx) => {
-    ctx.telegram.sendMessage(ctx.chat.id, 'привет добро пожаловать в бот', {
+
+
+bot.on('location', (ctx) => ctx.reply('спасибо, нам это было важно'))
+bot.on('contact', (ctx) => ctx.reply('спасибо, нам это было важно'))
+bot.on('sticker', (ctx) => ctx.reply('нет такого вырианта ответа'))
+
+// bot.on('text', (ctx) => {
+//     const scores = ctx.db.getScores(ctx.message.from.username)
+//     return ctx.reply(`{ctx.message.from.username }: ${scores}`)
+// })
+
+
+bot.start((ctx) => {
+    ctx.reply("Добро подаловать в бот, что бы начал напиши /info")
+})
+
+
+bot.command('/info', (ctx) => {
+
+    ctx.telegram.sendMessage(ctx.chat.id, 'Для начала нужно сделать это', {
         parse_mode: "Markdown",
 
         reply_markup: {
@@ -139,6 +156,8 @@ bot.hears("Продолжить", ctx => {
 
 })
 
+
+
 bot.action('socialnetwork', ctx => {
     ctx.telegram.sendMessage(ctx.chat.id, "Форма социальные сети", {
         reply_markup: {
@@ -197,6 +216,10 @@ bot.action('proffil2', ctx => {
                         text: "Какой у вас уровень \n" +
                             "владения?", callback_data: "1",
                     },
+
+
+
+                    })
                 ],
 
                 [
@@ -238,7 +261,7 @@ bot.action('prifil1', ctx => {
 
                 [
                     {
-                        text: "Как вас зовут?", callback_data: "a4"
+                        text: "Как вас зовут?", callback_data: "1"
                     },
 
                 ],
