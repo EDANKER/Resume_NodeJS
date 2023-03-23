@@ -44,6 +44,8 @@ bot.command('start', (ctx) => {
 
 });
 
+
+
 bot.action('number', ctx => {
     ctx.telegram.sendMessage(ctx.chat.id, "Подтвердите телефон и вашу локацию", {
 
@@ -113,7 +115,7 @@ bot.hears("Продолжить", ctx => {
 
                 [
                     {
-                        text: "Форма социальные сети",callback_data: "a3",
+                        text: "Форма социальные сети",callback_data: "socialnetwork",
                     },
 
 
@@ -132,6 +134,47 @@ bot.hears("Продолжить", ctx => {
 
 
     })
+
+
+
+})
+
+bot.action('socialnetwork', ctx => {
+    ctx.telegram.sendMessage(ctx.chat.id, "Форма социальные сети", {
+        reply_markup: {
+            keyboard:[
+                [
+                    {
+                        text: "У вас есть профиль в \n" +
+                            "социальных сетях?"
+                    },
+                ],
+
+                [
+                    {
+                        text: "Укажите ссылку на ваш \n" +
+                            "профиль"
+                    },
+                ],
+
+                [
+                    {
+                      text: "Продолжить"
+                    }
+
+                ]
+
+
+
+
+            ],
+            resize_keyboard: true
+
+        }
+
+
+    })
+
 
 
 })
