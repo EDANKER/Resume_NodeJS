@@ -219,7 +219,7 @@ bot.action('proffil2', ctx => {
 
 
 
-                    })
+
                 ],
 
                 [
